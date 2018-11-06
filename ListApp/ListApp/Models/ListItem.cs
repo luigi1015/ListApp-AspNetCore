@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace ListApp.Models
 {
-    public class List
+    public class ListItem
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string UserId { get; set; }
 
-        public List<ListItem> ListItems { get; set; }
+        public int ListId { get; set; }
+        public List List { get; set; }
     }
 }
