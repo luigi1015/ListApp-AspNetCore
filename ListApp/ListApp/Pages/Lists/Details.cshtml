@@ -27,10 +27,25 @@
 </div>
 <div>
     <h5>List Items</h5>
-    @foreach( var listItem in Model.List.ListItems )
-    {
-        <li>@listItem.Name</li>
-    }
+    <ul>
+        @foreach (var listItem in Model.List.ListItems)
+        {
+            <li>@listItem.Name</li>
+        }
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label class="control-label">Item Name</label>
+                <input name="itemName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.List.ID">Edit</a> |

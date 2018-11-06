@@ -37,5 +37,19 @@ namespace ListApp.Pages.Lists
             }
             return Page();
         }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if(id != null)
+            {
+                List = await _context.List.Include("ListItems").FirstOrDefaultAsync(m => m.ID == id);
+                ListItem newItem = new ListItem();
+                newItem.ListId = id.Value;
+                newItem.Name = Request.Form["itemName"];
+                _context.List.First(m => m.ID == id).ListItems.Add(newItem);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToPage("./Index");
+        }
     }
 }
