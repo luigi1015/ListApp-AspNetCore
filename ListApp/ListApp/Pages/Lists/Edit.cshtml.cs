@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ListApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace ListApp.Pages.Lists
 {
@@ -15,10 +16,12 @@ namespace ListApp.Pages.Lists
     public class EditModel : PageModel
     {
         private readonly ListApp.Models.ListAppContext _context;
+        private UserManager<IdentityUser> _userManager { get; }
 
-        public EditModel(ListApp.Models.ListAppContext context)
+        public EditModel(ListApp.Models.ListAppContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [BindProperty]
@@ -46,6 +49,8 @@ namespace ListApp.Pages.Lists
             {
                 return Page();
             }
+
+            List.UserId = _userManager.GetUserId(User);
 
             _context.Attach(List).State = EntityState.Modified;
 

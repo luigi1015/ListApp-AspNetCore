@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ListApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace ListApp.Pages.Lists
 {
@@ -14,17 +15,20 @@ namespace ListApp.Pages.Lists
     public class IndexModel : PageModel
     {
         private readonly ListApp.Models.ListAppContext _context;
+        private UserManager<IdentityUser> _userManager { get; }
 
-        public IndexModel(ListApp.Models.ListAppContext context)
+        public IndexModel(ListApp.Models.ListAppContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IList<List> List { get;set; }
 
         public async Task OnGetAsync()
         {
-            List = await _context.List.ToListAsync();
+            string userId = _userManager.GetUserId(User);
+            List = await _context.List.Where(x => x.UserId == userId).ToListAsync();
         }
     }
 }
