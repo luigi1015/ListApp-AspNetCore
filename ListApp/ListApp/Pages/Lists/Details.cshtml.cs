@@ -29,7 +29,7 @@ namespace ListApp.Pages.Lists
                 return NotFound();
             }
 
-            List = await _context.List.FirstOrDefaultAsync(m => m.ID == id);
+            List = await _context.List.Include("ListItems").FirstOrDefaultAsync(m => m.ID == id);
 
             if (List == null)
             {

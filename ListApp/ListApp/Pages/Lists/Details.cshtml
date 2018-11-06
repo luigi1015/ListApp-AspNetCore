@@ -26,6 +26,13 @@
     </dl>
 </div>
 <div>
+    <h5>List Items</h5>
+    @foreach( var listItem in Model.List.ListItems )
+    {
+        <li>@listItem.Name</li>
+    }
+</div>
+<div>
     <a asp-page="./Edit" asp-route-id="@Model.List.ID">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>
