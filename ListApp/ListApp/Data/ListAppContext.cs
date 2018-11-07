@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ListApp.Models;
 
 namespace ListApp.Models
 {
@@ -14,5 +15,7 @@ namespace ListApp.Models
         }
 
         public DbSet<ListApp.Models.List> List { get; set; }
+
+        public DbSet<ListApp.Models.ListItem> ListItem { get; set; }
     }
 }

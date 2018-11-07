@@ -27,12 +27,27 @@
 </div>
 <div>
     <h5>List Items</h5>
-    <ul>
-        @foreach (var listItem in Model.List.ListItems)
-        {
-            <li>@listItem.Name</li>
-        }
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Text</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var listItem in Model.List.ListItems)
+            {
+                <tr>
+                    <td>
+                        @listItem.Name
+                    </td>
+                    <td>
+                        <a asp-page="./DeleteListItem" asp-route-id="@listItem.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 <div class="row">
     <div class="col-md-4">

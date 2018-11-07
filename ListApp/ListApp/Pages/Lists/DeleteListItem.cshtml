@@ -1,0 +1,34 @@
+﻿@page
+@model ListApp.Pages.Lists.DeleteListItemModel
+
+@{
+    ViewData["Title"] = "DeleteListItem";
+}
+
+<h2>DeleteListItem</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ListItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ListItem.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ListItem.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ListItem.List)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ListItem.List.ID)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="ListItem.ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
