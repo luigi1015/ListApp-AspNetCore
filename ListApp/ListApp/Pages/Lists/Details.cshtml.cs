@@ -49,7 +49,7 @@ namespace ListApp.Pages.Lists
                 _context.List.First(m => m.ID == id).ListItems.Add(newItem);
                 await _context.SaveChangesAsync();
             }
-            //return RedirectToPage("./Index");
+            
             return Redirect(String.Format("Details?id={0}", id));
         }
     }
